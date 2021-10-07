@@ -20,7 +20,7 @@ public class Ex7 {
 
         Period p = Period.between(nasc, hoje);
 
-        System.out.println("Sua idade é aproximadamente "+(p.getDays()+p.getMonths()*31+p.getYears()*365)+" dias");
+        System.out.println("\nVocê possui "+(p.getDays()+p.getMonths()*31+p.getYears()*365)+" dias de idade!");
         scanner.close();
     }
 }
