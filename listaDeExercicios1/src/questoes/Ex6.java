@@ -38,6 +38,7 @@ public class Ex6 {
         }
 
         System.out.println(F);
+        scanner.close();
 
     }
 }
