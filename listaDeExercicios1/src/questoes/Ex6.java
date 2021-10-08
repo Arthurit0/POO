@@ -1,5 +1,6 @@
 package questoes;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ex6 {
@@ -17,8 +18,9 @@ public class Ex6 {
         int L1 = S1.length();
         int L2 = S2.length();
 
-        char V[] = new char[L1+L2];
-        int indexV = 0, contV = 0;
+        char V[] = new char[26];
+        int indexV = 0; 
+        boolean repetV = false;
 
         //Comparando cada letra da primeira string com a da segunda. 
         for (int i=0; i<L1; i++){
@@ -33,25 +35,26 @@ public class Ex6 {
                         //Percorrendo vetor do início até o contador indexV
                         for (int k=0; k<indexV;k++){
                             //Comparando se a letra igual encontrada pelos dois fors já está no array V, se estiver,
-                            //o contador aumenta para que não entre no próximo if
+                            //repetV indicará true
                             if (S1.toUpperCase().charAt(i) == V[k]){
-                                contV++;
+                                repetV = true;
+                                break;
                             }
                         }
                         //if para filtrar se a letra encontrada se repetiu no array V, se não for o caso,
                         //a letra será guardada na próxima posição de V
-                        if (contV == 0){
+                        if (repetV == false){
                             V[indexV] = S1.toUpperCase().charAt(i);
                             indexV++;
                         }
-                        contV = 0;
+                        repetV = false;
                     }
                 }
             }
         }
+
+        Arrays.sort(V);
+        System.out.printf("As letras presentes em ambas as strings (e ordenadas alfabeticamente) são: ");
         System.out.println(V);
-
-        //Ordenando em ordem Alfabética
-
     }
 }
