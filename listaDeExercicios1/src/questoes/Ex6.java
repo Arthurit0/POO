@@ -17,28 +17,38 @@ public class Ex6 {
         int L2 = S2.length();
 
         String F = "";
-        //Coletando letras iguais em ambas as Strings, separadas por um espaço
+
+        char V[] = new char[L1+L2];
+        int indexV = 0, contV = 0;
+
+        //Coletando letras iguais em ambas as Strings
         for (int i=0; i<L1; i++){
             for (int j=0; j<L2; j++){
                 if (S1.toLowerCase().charAt(i) == S2.toLowerCase().charAt(j)){
-                    F = F + S1.toUpperCase().charAt(i) + " ";
-                }
-            }
-        }
+                    F = F + S1.toUpperCase().charAt(i);
 
-        int L3 = F.length();
-        char F2[] = F.toCharArray();
+                    if (indexV == 0){
+                        V[indexV] = S1.toUpperCase().charAt(i);
+                        indexV++;
+                    }else{
+                        for (int k=0; k<indexV;k++){
+                            if (S1.toUpperCase().charAt(i) == V[k]){
+                                contV++;
+                            }
+                        }
+                        if (contV == 0){
+                            V[indexV] = S1.toUpperCase().charAt(i);
+                            indexV++;
+                        }
+                        contV = 0;
+                    }
+                    
 
-        for (int i = 0; i<L3; i++){
-            for (int j=0; j<L3; j++){
-                if(F2[i] == F2[j]){
-                   
                 }
             }
         }
 
         System.out.println(F);
-        scanner.close();
-
+        System.out.println(V);
     }
 }
