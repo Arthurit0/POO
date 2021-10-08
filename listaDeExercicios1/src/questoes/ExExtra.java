@@ -125,7 +125,7 @@ public class ExExtra {
         System.out.println("\nPara a obtenção da palavra \""+P+"\":\n");
         for(int i = 0; i<8; i++){
             if(T[i]!=0){
-                System.out.println("A Tecla "+(i+2)+" será apertada "+T[i]+" vez(es)");
+                System.out.println("A Tecla "+(i+2)+" será pressionada "+T[i]+" vez(es)");
             }
         }
     }
