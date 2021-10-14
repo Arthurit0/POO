@@ -56,4 +56,12 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public String toString(){
+        String dadosEndereco = "";
+
+        dadosEndereco += "=> Endereço: Rua " + this.rua + ", " + this.numero + " - CEP: "+ this.cep +" - Bairro "+ this.bairro+".";
+        dadosEndereco += "\n   Cidade de "+ this.cidade +" no estado de "+this.estado+".";
+
+        return dadosEndereco;
+    }
 }

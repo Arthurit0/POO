@@ -29,4 +29,16 @@ public class Dono {
         this.cpf = cpf;
     }
 
+    public String toString(){
+        String dadosDono = "";
+
+        dadosDono += "=> Nome do Dono: "+ this.nome +"\n=> CPF: "+ this.cpf;
+
+        if(this.endereco != null){
+            dadosDono += "\n" + this.endereco;
+        }
+
+        return dadosDono;
+    }
+
 }

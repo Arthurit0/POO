@@ -38,4 +38,18 @@ public class Animal {
         this.descricao = descricao;
     }
 
+    public String toString(){
+        String dadosAni = "";
+
+        dadosAni += "=> Nome do Animal: "+ this.nome;
+        dadosAni += "\n=> Espécie do Animal: "+this.especie;
+        dadosAni += "\n=> Descrição: "+this.descricao;
+
+        if(this.dono != null){
+            dadosAni += "\n" + this.dono;
+        }
+
+        return dadosAni;
+    }
+
 }

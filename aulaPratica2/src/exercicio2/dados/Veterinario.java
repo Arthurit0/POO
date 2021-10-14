@@ -54,4 +54,17 @@ public class Veterinario {
         this.quantidadeAnimais = quantidadeAnimais;
     }
 
+    public String toString(){
+        String dadosVet = "";
+
+        dadosVet += "=> Nome: "+ this.nome;
+        dadosVet += "\n=> Salário: R$ "+ this.salario;
+
+        if (this.encereco != null){
+            dadosVet += "\n"+ this.encereco;
+        }
+
+        return dadosVet;
+    }
+
 }
