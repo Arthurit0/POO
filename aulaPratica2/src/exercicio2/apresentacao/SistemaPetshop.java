@@ -4,7 +4,7 @@ import exercicio2.dados.*;
 import java.util.Scanner;
 
 public class SistemaPetshop {
-    static Veterinario Veterinarios[] = new Veterinario[2];
+    static Veterinario Veterinarios[] = new Veterinario[50];
     static int quantVet = 0;
     static Animal animais[] = new Animal[Veterinarios.length*5];
     static int quantAni = 0;
@@ -60,6 +60,7 @@ public class SistemaPetshop {
             }
             System.out.printf("Pressione \"Enter\" para continuar...");
             scanner.nextLine();
+            limpaTela();
         }while (op != 0);
     }
 
@@ -94,6 +95,7 @@ public class SistemaPetshop {
 
         Veterinarios[quantVet] = v;
         quantVet++;
+        System.out.println("\n"+Veterinarios[quantVet-1].toString());
 
             System.out.printf("\nVeterinário registrado com Sucesso! ");
         }else{
@@ -236,7 +238,7 @@ public class SistemaPetshop {
                 dono.setCpf(Integer.parseInt(scanner.nextLine()));
 
                 animais[op1].setDono(dono);
-                System.out.println(animais[op1].getDono());
+                System.out.println("\n"+animais[op1].getDono());
 
                 donoRegistrado = true;
 
@@ -264,20 +266,22 @@ public class SistemaPetshop {
                 if (animais[op1].getDono() == null){
                     System.out.printf("\nO dono deste animal ainda não foi registrado! ");
                 }else{
-                    System.out.println("\n"+animais[op1].getDono()+"\n");
+                    System.out.println("\n"+animais[op1].getDono());
                     animais[op1].getDono().setEndereco(cadastrarEndereco());
 
+                    System.out.println("\n"+animais[op1].getDono().getEndereco());
+
+                    System.out.printf("\nEndereço do dono registrado com sucesso! ");
 
                 }
 
             }else{
-                System.out.printf("Não há nenhum dono registrado!");
+                System.out.printf("Não há nenhum dono registrado! ");
             }   
         }else{
             System.out.printf("Não há animais registrados! ");
         }
     }
-
 
 }
 
