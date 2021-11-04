@@ -28,9 +28,7 @@ public class Zoologico {
 	
 
     public boolean alocarAnimal(Animal animal, Viveiro viveiro){
-        
         return viveiro.adicionarAnimal(animal);
-
     }
 
     public List<Aquario> getSoAquarios(){
@@ -45,14 +43,14 @@ public class Zoologico {
     }
 
     public List<Viveiro> getSoViveiros(){
-        List<Viveiro> viveiros = new ArrayList<Viveiro>();
+        List<Viveiro> soViveiros = new ArrayList<Viveiro>();
 
         for(int i = 0; i<viveiros.size(); i++){
             if(!(viveiros.get(i) instanceof Aquario)){
-                viveiros.add(viveiros.get(i));
+                soViveiros.add(viveiros.get(i));
             }
         }
-        return viveiros;
+        return soViveiros;
     }
 
 

@@ -1,13 +1,13 @@
 package exercicio2.dados;
 
 public class Peixe extends Animal {
-    private int temperaturaIdeal;
+    private float temperaturaIdeal;
 
-    public int getTemperaturaIdeal() {
+    public float getTemperaturaIdeal() {
         return this.temperaturaIdeal;
     }
 
-    public void setTemperaturaIdeal(int temperaturaIdeal) {
+    public void setTemperaturaIdeal(float temperaturaIdeal) {
         this.temperaturaIdeal = temperaturaIdeal;
     }
 

@@ -62,6 +62,10 @@ public class Viveiro {
         }
     }
 
+    public List<Animal> getAnimais(){
+        return this.animais;
+    }
+
     public String toString() {
         String str = "";
 
@@ -69,6 +73,23 @@ public class Viveiro {
         str += "\nComprimento: "+this.comprimento+", Largura: "+this.largura;
 
         return str;
+    }
+
+    public String toStringAnimais(){
+        if (animais.size()>0){
+            String str = "=> Animais Alocados:\n";
+
+            for(int i=0; i<animais.size(); i++){
+                str += "\n==================================================\n";
+                str += animais.get(i);
+            }
+
+            str += "\n==================================================\n";
+
+            return str;
+        }
+
+        return "Vazio\n";
     }
 
 }
