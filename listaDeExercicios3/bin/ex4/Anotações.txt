@@ -1,0 +1,9 @@
+Um da frente(3 na equipe)
+
+novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(0));
+novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-1));
+novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-2));
+
+alunosSemEquipe.remove(0);
+alunosSemEquipe.remove(alunosSemEquipe.size()-1);
+alunosSemEquipe.remove(alunosSemEquipe.size()-2);
