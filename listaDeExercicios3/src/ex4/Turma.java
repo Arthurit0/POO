@@ -27,31 +27,29 @@ public class Turma {
         while(alunosSemEquipe.size() > 0){
             Equipe<Aluno> novaEquipe = new Equipe<Aluno>();
 
-            if(alunosSemEquipe.size() >= 4){
+            if(alunosSemEquipe.size() > 4){
                 umOuDois = rand.nextInt(2) + 1;
                 System.out.println(umOuDois);
                 
                 switch (umOuDois) {
                     case 1:
                         novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(0));
-                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-1));
-                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-2));
-
                         alunosSemEquipe.remove(0);
+                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-1));
                         alunosSemEquipe.remove(alunosSemEquipe.size()-1);
+                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-2));
                         alunosSemEquipe.remove(alunosSemEquipe.size()-2);
-                        
+
                         break;
                     
                     case 2:
                         novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(0));
-                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(1));
-                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-1));
-
                         alunosSemEquipe.remove(0);
+                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(1));
                         alunosSemEquipe.remove(1);
+                        novaEquipe.getEquipeAlunos().add(alunosSemEquipe.get(alunosSemEquipe.size()-1));
                         alunosSemEquipe.remove(alunosSemEquipe.size()-1);
-                        
+
                         break;
 
                     default:

@@ -59,7 +59,7 @@ public class Aluno {
     public String toString() {
         String str = "";
 
-        str += "Aluno: "+this.nome;
+        str += this.nome;
         str += ", Idade: "+this.idade;
         str += ", Notas: ";
 

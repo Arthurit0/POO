@@ -9,7 +9,7 @@ public class Main {
     
     public static void main(String[] args) {   
         int op = 0;
-
+        /*Para Teste 
         turma.adicionarAluno(new Aluno("Julia", 18, 9.7, 9.7, 9.7, 9.7, 9.7));
         turma.adicionarAluno(new Aluno("Gabriela", 17, 9.2, 9.2, 9.2, 9.2, 9.2));
         turma.adicionarAluno(new Aluno("Matheus", 15, 8.7, 8.7, 8.7, 8.7, 8.7));
@@ -20,7 +20,7 @@ public class Main {
         turma.adicionarAluno(new Aluno("Beatriz", 18, 6.6, 6.6, 6.6, 6.6, 6.6));
         turma.adicionarAluno(new Aluno("Rafael", 19, 5.6, 5.6, 5.6, 5.6, 5.6));
         turma.adicionarAluno(new Aluno("Gabriel", 15, 4.7, 4.7, 4.7, 4.7, 4.7));
-
+        */
         do {
             System.out.println("Digite 1 para adicionar mais um aluno na turma, e -1 para exibir as equipes: ");
             op = Integer.parseInt(scanner.nextLine());
