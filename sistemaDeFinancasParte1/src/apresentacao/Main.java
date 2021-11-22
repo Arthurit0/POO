@@ -110,8 +110,6 @@ public class Main {
         }
     }
 
-
-
     private static void editarGasto() {
         int index, opEdit;
 
@@ -226,8 +224,6 @@ public class Main {
         System.out.printf("\nSelecione uma opção: ");
     }
 
-
-
     private static void filtrarGastos() {
         int opFilt = -1;
         mostraMenuFiltragem();
@@ -253,8 +249,6 @@ public class Main {
                 break;
         }
     }
-
-
 
     private static void filtrarPorCategoria() {
         int categoria;
@@ -355,23 +349,6 @@ public class Main {
         System.out.println();
     }
 
-    private static void mostraMenu() {
-        System.out.println("|=====================================|");
-        System.out.println("|               Menu do               |");
-        System.out.println("|         Sistema de Finanças         |");
-        System.out.println("|=====================================|");
-        System.out.println("|                                     |");
-        System.out.println("| 1 - Registrar Gasto                 |");
-        System.out.println("| 2 - Visualizar Finanças             |");
-        System.out.println("| 3 - Visualizar Finanças com filtro  |");
-        System.out.println("| 4 - Alterar Registro de Gasto       |");
-        System.out.println("| 5 - Excluir Registro de Gasto       |");
-        System.out.println("| 6 - Deslogar                        |");
-        System.out.println("| 0 - Fechar Programa                 |");
-        System.out.println("|_____________________________________|");
-        System.out.printf("\nSelecione uma opção: ");
-    }
-
     private static void systemCls() {
         for(int i=0; i<10; i++){
             System.out.println();
@@ -426,6 +403,23 @@ public class Main {
         System.out.printf("\nUsuário criado com sucesso! ");
 
         }
+    
+    private static void mostraMenu() {
+        System.out.println("|=====================================|");
+        System.out.println("|               Menu do               |");
+        System.out.println("|         Sistema de Finanças         |");
+        System.out.println("|=====================================|");
+        System.out.println("|                                     |");
+        System.out.println("| 1 - Registrar Gasto                 |");
+        System.out.println("| 2 - Visualizar Finanças             |");
+        System.out.println("| 3 - Visualizar Finanças com filtro  |");
+        System.out.println("| 4 - Alterar Registro de Gasto       |");
+        System.out.println("| 5 - Excluir Registro de Gasto       |");
+        System.out.println("| 6 - Deslogar                        |");
+        System.out.println("| 0 - Fechar Programa                 |");
+        System.out.println("|_____________________________________|");
+        System.out.printf("\nSelecione uma opção: ");
+    }
     }
 
 
