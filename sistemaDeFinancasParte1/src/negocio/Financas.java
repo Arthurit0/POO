@@ -19,7 +19,6 @@ public class Financas {
         novoGasto(new Gasto("Gasto 3", "Teste...", new Data(14, 3, 2021), (float)2.50, 5));
         novoGasto(new Gasto("Gasto 4", "Teste?", new Data(15, 12, 2021), (float)44.75, 5));
         novoGasto(new Gasto("Gasto 5", "Teste!", new Data(16, 9, 2021), 200, 3));
-
         logoffUsuario();
 
     }
@@ -147,7 +146,5 @@ public class Financas {
 
         return false;
     }
-
-
 
 }

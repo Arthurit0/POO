@@ -273,16 +273,6 @@ public class Main {
         mostrarGastos(gastosMes);
     }
 
-    private static void mostraMenuFiltragem() {
-        System.out.println("|========= Filtrando Gastos ==========|");
-        System.out.println("|                                     |");
-        System.out.println("| 1 - Filtrar por mês                 |");
-        System.out.println("| 2 - Filtrar por categoria           |");
-        System.out.println("| 0 - Cancelar                        |");
-        System.out.println("|_____________________________________|");
-        System.out.printf("\nSelecione uma opção: ");
-    }
-
     private static void mostrarGastos(List<Gasto> gastos) {
         int cont = 1;
         System.out.println();
@@ -349,30 +339,6 @@ public class Main {
         System.out.println();
     }
 
-    private static void systemCls() {
-        for(int i=0; i<10; i++){
-            System.out.println();
-        }
-    }
-
-    private static void systemPause() {
-        System.out.printf("Pressione Enter para continuar...");
-        scanner.nextLine();
-    }
-
-    private static void mostraMenuLogin() {
-        System.out.println("|=====================================|");
-        System.out.println("|             Bem-vindo ao            |");
-        System.out.println("|         Sistema de Finanças         |");
-        System.out.println("|=====================================|");
-        System.out.println("|                                     |");
-        System.out.println("| 1 - Fazer Login                     |");
-        System.out.println("| 2 - Criar Nova Conta                |");
-        System.out.println("| 0 - Fechar programa                 |");
-        System.out.println("|_____________________________________|");                                    
-        System.out.printf("\nSelecione uma opção: ");
-    }
-
     private static void loginDeUsuario() {
         String login, senha;
 
@@ -420,6 +386,41 @@ public class Main {
         System.out.println("|_____________________________________|");
         System.out.printf("\nSelecione uma opção: ");
     }
+    
+    private static void mostraMenuLogin() {
+        System.out.println("|=====================================|");
+        System.out.println("|             Bem-vindo ao            |");
+        System.out.println("|         Sistema de Finanças         |");
+        System.out.println("|=====================================|");
+        System.out.println("|                                     |");
+        System.out.println("| 1 - Fazer Login                     |");
+        System.out.println("| 2 - Criar Nova Conta                |");
+        System.out.println("| 0 - Fechar programa                 |");
+        System.out.println("|_____________________________________|");                                    
+        System.out.printf("\nSelecione uma opção: ");
     }
+
+    private static void mostraMenuFiltragem() {
+        System.out.println("|========= Filtrando Gastos ==========|");
+        System.out.println("|                                     |");
+        System.out.println("| 1 - Filtrar por mês                 |");
+        System.out.println("| 2 - Filtrar por categoria           |");
+        System.out.println("| 0 - Cancelar                        |");
+        System.out.println("|_____________________________________|");
+        System.out.printf("\nSelecione uma opção: ");
+    }
+
+    private static void systemPause() {
+        System.out.printf("Pressione Enter para continuar...");
+        scanner.nextLine();
+    }
+
+    private static void systemCls() {
+        for(int i=0; i<10; i++){
+            System.out.println();
+        }
+    }
+
+}
 
 
