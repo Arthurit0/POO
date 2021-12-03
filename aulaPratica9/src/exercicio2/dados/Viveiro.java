@@ -49,17 +49,8 @@ public class Viveiro {
         return (calculaEspaco()-espacoOcupado());
     }
 
-    public boolean adicionarAnimal(Animal animal){
-        if(espacoDisponivel() >= (animal.calculaEspacoOcupado()*0.7)){
-            if(!(animal instanceof Peixe)){
-                animais.add(animal);
-                return true;
-            }else{
-                return false;
-            }
-        }else{
-            return false;
-        }
+    public void adicionarAnimal(Animal animal){
+        animais.add(animal);
     }
 
     public List<Animal> getAnimais(){
@@ -69,7 +60,7 @@ public class Viveiro {
     public String toString() {
         String str = "";
 
-        str += "\nNome: "+this.nome;
+        str += "Nome: "+this.nome;
         str += "\nComprimento: "+this.comprimento+", Largura: "+this.largura;
 
         return str;
@@ -77,19 +68,19 @@ public class Viveiro {
 
     public String toStringAnimais(){
         if (animais.size()>0){
-            String str = "=> Animais Alocados:\n";
+            String str = "\n=> Animais Alocados:\n";
 
             for(int i=0; i<animais.size(); i++){
-                str += "\n==================================================\n";
+                str += "\n================================================\n";
                 str += animais.get(i);
             }
 
-            str += "\n==================================================\n";
+            str += "\n================================================\n";
 
             return str;
         }
 
-        return "Vazio\n";
+        return "\n-> Viveiro Vazio\n";
     }
 
 }

@@ -7,6 +7,9 @@ import exercicio2.dados.Animal;
 import exercicio2.dados.Aquario;
 import exercicio2.dados.Peixe;
 import exercicio2.dados.Viveiro;
+import exercicio2.exceptions.AlocacaoInvalidaException;
+import exercicio2.exceptions.EspacoInsuficienteException;
+import exercicio2.exceptions.TemperaturaInadequadaException;
 import exercicio2.negocio.Zoologico;
 
 public class Main {
@@ -19,7 +22,7 @@ public class Main {
             mostraMenu();
             op = Integer.parseInt(scanner.nextLine());
 
-            limpaTela();
+            systemcls();
 
             switch (op) {
                 case 1:
@@ -47,61 +50,51 @@ public class Main {
 
             System.out.printf("Pressione Enter para continuar...");
             scanner.nextLine();
-            limpaTela();
+            systemcls();
         } while (op != 0);
     }
 
     private static void mostrarTodosViveiros() {
-        if(zoo.getSoViveiros().size()>0){
-            System.out.println("=> Viveiros:\n");
-            mostrarViveiros();
+        List<Viveiro> todosViveiros = zoo.getViveiros();
+
+        System.out.println("Lista de Viveiros:\n");
+
+        for(int i=0; i<todosViveiros.size(); i++){
+            Viveiro viveiroAtual = todosViveiros.get(i);
+
+            System.out.println("/--------------\\");
+            System.out.printf("  Nº"+(i+1)+": ");
+
+            if(viveiroAtual instanceof Aquario){
+                System.out.printf("Aquário  \n");
+            }else{
+                System.out.printf("Viveiro  \n");
+            }
+
+            System.out.println("\\--------------/\n");
+            System.out.println(viveiroAtual);
+            System.out.println(viveiroAtual.toStringAnimais());
         }
-        
-        if(zoo.getSoAquarios().size()>0){
-            System.out.println("=> Aquarios:\n");
-            mostrarAquarios();
-        }
+
     }
 
     private static void mostrarAnimais() {
         List<Animal> animaisReg = zoo.getAnimais();
 
+        System.out.println("Lista de Animais:");
+
+
         for(int i=0; i<animaisReg.size(); i++){
-            System.out.println("\nAnimal nº"+i+":\n");
+            System.out.println("\nAnimal nº"+(i+1)+":\n");
             System.out.println(animaisReg.get(i));
         }
 
         System.out.println();
     }
 
-    private static void mostrarViveiros() {
-        List<Viveiro> viveiros = zoo.getSoViveiros();
-
-        if(viveiros.size() > 0){
-            for(int i=0; i<viveiros.size(); i++){
-                System.out.println("Viveiro nº"+i);
-                System.out.println(viveiros.get(i));
-                System.out.println(viveiros.get(i).toStringAnimais());
-            }
-        }
-    }
-
-    private static void mostrarAquarios() {
-        List<Aquario> aquarios = zoo.getSoAquarios();
-
-        if(aquarios.size()>0){
-            for(int i=0; i<aquarios.size(); i++){
-                System.out.println("Aquário nº"+i);
-                System.out.println(aquarios.get(i));
-                System.out.println(aquarios.get(i).toStringAnimais());
-            }
-        }
-    }
-
-
     private static void alocarAnimal() {
         int op, op2;
-        Animal novoAnimal = new Animal();
+        Animal animal = new Animal();
 
         if(zoo.getViveiros().size()>0){
 
@@ -113,11 +106,11 @@ public class Main {
 
             switch (op) {
                 case 1:
-                    novoAnimal = novoAnimal();
+                    animal = novoAnimal();
                     break;
 
                 case 2:
-                    novoAnimal = novoPeixe();
+                    animal = novoPeixe();
             
                 default:
                     break;
@@ -125,38 +118,29 @@ public class Main {
             
             System.out.printf("Pressione Enter para continuar...");
             scanner.nextLine();
-            limpaTela();
+            systemcls();
 
+            Viveiro viveiro;
+            mostrarTodosViveiros();
+            System.out.printf("Selecione um viveiro para alocar o animal: ");
+            op2 = (Integer.parseInt(scanner.nextLine()))-1;
+            viveiro = zoo.getViveiros().get(op2);
 
-            if(novoAnimal instanceof Peixe){
-                mostrarAquarios();
-                Aquario aquarioEscolhido;
-
-                System.out.printf("Selecione um aquário para alocar o peixe: ");
-                op2 = Integer.parseInt(scanner.nextLine());
-                aquarioEscolhido = zoo.getSoAquarios().get(op2);
-
-                if(zoo.alocarAnimal(novoAnimal, aquarioEscolhido)){
-                    zoo.cadastrarAnimais(novoAnimal);
-                    System.out.printf("\nPeixe alocado! ");
-                }else{
-                    System.out.printf("\nPeixe não foi alocado (cheque o tamanho do peixe, ou temperatura)! ");
-                }
-            }else{
-                mostrarViveiros();
-                Viveiro viveiroEscolhido;
-
-                System.out.printf("Selecione um viveiro para alocar o animal: ");
-                op2 = Integer.parseInt(scanner.nextLine());
-                viveiroEscolhido = zoo.getSoViveiros().get(op2);
-
-                if(zoo.alocarAnimal(novoAnimal, viveiroEscolhido)){
-                    zoo.cadastrarAnimais(novoAnimal);
-                    System.out.printf("\nAnimal alocado! ");
-                }else{
-                    System.out.printf("\nAnimal não alocado (cheque o tamanho do animal)! ");
-                }
+            try {
+                zoo.alocarAnimal(animal, viveiro);
+            }catch (AlocacaoInvalidaException e) {
+                systemcls();
+                System.err.printf(e.getMessage());
+            }catch (EspacoInsuficienteException e){
+                systemcls();
+                System.err.printf(e.getMessage());
+            }catch (TemperaturaInadequadaException e){
+                systemcls();
+                System.err.printf(e.getMessage());
             }
+
+            System.out.println();
+
         }else{
             System.out.printf("Não há viveiros registrados! ");
         }
@@ -255,7 +239,7 @@ public class Main {
         System.out.printf("Digite a temperatura do aquario: ");
         aquario.setTemperatura(Float.parseFloat(scanner.nextLine()));
 
-        System.out.println(aquario+"\n");
+        System.out.println("\n"+aquario+"\n");
 
         return aquario;
     }
@@ -272,13 +256,13 @@ public class Main {
         System.out.printf("Digite a largura do viveiro: ");
         viveiro.setLargura(Float.parseFloat(scanner.nextLine()));
 
-        System.out.println(viveiro+"\n");
+        System.out.println("\n"+viveiro+"\n");
 
         return viveiro;
     }
 
 
-    private static void limpaTela() {
+    private static void systemcls() {
         for(int i=0; i<100; i++){
             System.out.println();
         }
