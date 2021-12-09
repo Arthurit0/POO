@@ -22,7 +22,7 @@ public class Contato {
 
     public boolean equals(Object o){
         Contato c = (Contato) o;
-        if(this.telefone == c.getTelefone()){
+        if((c.getNome().equals(this.nome)) && c.getTelefone() == this.telefone){
             return true;
         } else{
             return false;

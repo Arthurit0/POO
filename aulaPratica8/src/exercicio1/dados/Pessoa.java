@@ -42,8 +42,22 @@ public class Pessoa {
         return this.massa/(this.altura*this.altura);
     }
 
-    public boolean equals(Object o){
-        return false;
+    @Override
+    public String toString() {
+        String str = "";
 
+        str += "Nome: "+getNome()+", Idade: "+getIdade()+", Altura: "+getAltura()+", Massa: "+getMassa()+", IMC: "+calculaIMC();
+
+        return str;
+    }
+
+    public boolean equals(Object o){
+        Pessoa p = (Pessoa) (o);
+
+        if (p.getNome().equals(this.nome)){
+            return true;
+        }
+
+        return false;
     }
 }
