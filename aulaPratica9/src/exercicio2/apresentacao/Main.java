@@ -83,7 +83,6 @@ public class Main {
 
         System.out.println("Lista de Animais:");
 
-
         for(int i=0; i<animaisReg.size(); i++){
             System.out.println("\nAnimal nº"+(i+1)+":\n");
             System.out.println(animaisReg.get(i));
@@ -138,13 +137,10 @@ public class Main {
                 systemcls();
                 System.err.printf(e.getMessage());
             }
-
             System.out.println();
-
         }else{
             System.out.printf("Não há viveiros registrados! ");
         }
-        
     }
 
     private static Animal novoPeixe() {
@@ -219,8 +215,6 @@ public class Main {
                 System.out.printf("Opção inválida! ");
                 break;
         }
-
-
     }
 
 
@@ -280,4 +274,3 @@ public class Main {
         System.out.printf("\nSelecione uma opção: ");
     }
 }
-
