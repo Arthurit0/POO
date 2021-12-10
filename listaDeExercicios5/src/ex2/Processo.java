@@ -23,7 +23,7 @@ public class Processo {
     public String toString() {
         String str = "";
 
-        str += "Processo de ID "+getId()+": "+getNome();
+        str += " Processo de ID "+getId()+": "+getNome();
 
         return str;
     }

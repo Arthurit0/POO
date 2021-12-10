@@ -12,6 +12,14 @@ public class SistemaProcessos {
     List<Processo> processos = new LinkedList<Processo>();
     Random rand = new Random();
 
+    public List<Juiz> getJuizes(){
+        return juizes;
+    }
+
+    public List<Processo> getProcessos(){
+        return processos;
+    }
+
     public void cadastrarProcesso(Processo processo){
         processos.add(processo);
     }
@@ -29,9 +37,13 @@ public class SistemaProcessos {
             boolean aceitaProcessos = true;
 
             while(aceitaProcessos){
-
-            randNum = rand.nextInt(processos.size());
-            processoSorteado = processos.get(randNum);
+            
+            if(processos.size() > 1){
+                randNum = rand.nextInt(processos.size());
+                processoSorteado = processos.get(randNum);
+            }else{
+                processoSorteado = processos.get(0);
+            }
 
             try {
                 juiz.getProcessos().inserir(processoSorteado);
@@ -39,14 +51,14 @@ public class SistemaProcessos {
             } catch (PilhaCheiaException e) {
                 aceitaProcessos = false;
             }
+        
         }
-            
-        }
+
+    }
 
         if(processos.size() > 0){
             throw new ProcessoSemJuizException("Há processos não distribuídos a juízes! ");
         }
 
     }
-
 }

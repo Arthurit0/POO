@@ -22,6 +22,10 @@ public abstract class Pilha<T>{
         this.limite = limite;
     }
 
+    public List<T> getElementos(){
+        return elementos;
+    }
+
     public void inserir(T objeto) throws PilhaCheiaException{
         if(elementos.size() < limite){
             elementos.add(objeto);
