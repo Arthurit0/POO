@@ -28,9 +28,35 @@ public class ArquivoContato {
         return contato;
     }
 
-    private List<Contato> StringsToContatos(List<String> file){
+    private List<String> listaContatoToFile(List<Contato> contatos){
+        List<String> file = new LinkedList<String>();
+
+        for(Contato contato : contatos){
+            file.add(toCSV(contato));
+        }
+
+        return file;
+    }
+
+    private List<Contato> listaFileToContato(List<String> file){
         List<Contato> contatos = new LinkedList<Contato>();
         
+        for(String linha : file){
+            contatos.add(fromCSV(linha));
+        }
+
         return contatos;
+    }
+
+    public List<Contato> leContatos(){
+        return listaFileToContato(editorTexto.leTexto(caminho));
+    }
+
+    public void salvaContatos(List<Contato> contatos){
+        editorTexto.gravaTexto(caminho, listaContatoToFile(contatos));
+    }
+
+    public void salvaContatos(Contato contato){
+        editorTexto.gravaTexto(caminho, toCSV(contato));
     }
 }

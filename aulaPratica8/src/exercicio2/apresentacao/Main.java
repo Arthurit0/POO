@@ -16,7 +16,6 @@ public class Main {
             mostraMenu();
             op = Integer.parseInt(scanner.nextLine());
 
-            
             switch (op) {
                 case 1:
                     limpaTela();    
@@ -62,15 +61,14 @@ public class Main {
     private static void exibirContatos(char chave) {
         List<Contato> contatosLetra = listaTelefonica.buscarContatos(chave);
 
-
-        if(contatosLetra != null){
+        if(contatosLetra.isEmpty()){
+            System.out.printf("Não há contato com esta inicial! ");
+        }else{
             for (int i = 0; i < contatosLetra.size(); i++) {
                 System.out.println("\nCódigo "+i+": ");
                 System.out.println(contatosLetra.get(i));
             }
             System.out.println();
-        }else{
-            System.out.printf("Não há contato com esta inicial! ");
         }
     }
 
@@ -92,25 +90,33 @@ public class Main {
     private static void removerContato() {
         char chave;
         int cod;
+
+        exibirContatos();
+
         System.out.printf("Digite a inicial do contato que deseja remover: ");
         chave = scanner.nextLine().toUpperCase().charAt(0);
 
-        if(listaTelefonica.buscarContatos(chave).size()>0){
-            exibirContatos(chave);
-
-            System.out.printf("Digite o código do contato que deseja remover: ");
-            cod = Integer.parseInt(scanner.nextLine());
-
-            if (cod < listaTelefonica.buscarContatos(chave).size()){
-                listaTelefonica.buscarContatos(chave).remove(cod);
-                System.out.println();
-            }else{
-                System.out.printf("\nNão há contato com este código! ");
-            }
-
-        }else{
+        if(listaTelefonica.buscarContatos(chave).isEmpty()){
             System.out.printf("\nNão há contato com esta inicial! ");
+            return;
         }
+
+        exibirContatos(chave);
+
+        System.out.printf("Digite o código do contato que deseja remover: ");
+        cod = Integer.parseInt(scanner.nextLine());
+
+        if (cod < listaTelefonica.buscarContatos(chave).size()){
+            List<Contato> listaDaChave = listaTelefonica.buscarContatos(chave);
+            Contato rmv = listaDaChave.get(cod);
+            
+            listaTelefonica.removeContato(rmv);
+            System.out.println();
+        }else{
+            System.out.printf("\nCódigo inválido! ");
+        }
+
+        
     }
 
     private static void adicionarContato() {
