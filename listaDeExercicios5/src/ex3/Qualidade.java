@@ -1,10 +1,10 @@
 package ex3;
 
 public enum Qualidade {
-    Q240p(240),
-    Q360p(360),
-    Q720p(720),
-    Q1024p(1024);
+    QualidadeDe240p(240),
+    QualidadeDe360p(360),
+    QualidadeDe720p(720),
+    QualidadeDe1024p(1024);
 
     private int qldd;
 
