@@ -1,0 +1,84 @@
+//Primeiro, criando tabelas que não possuem dependência:
+
+create table endereco(
+	id int,
+	rua varchar(50),
+	numero int,
+	cep int,
+	cidade varchar(20),
+	estado varchar(20),
+	pais varchar(20),
+	primary key (id)
+);
+
+create table tipo_animal(
+	id int,
+	nome varchar(50),
+	primary key (id)
+);
+
+insert into tipo_animal values (1, 'cachorro'), (2, 'gato'), (3, 'passaro'), (4, 'roedor');
+
+//Agora, criando a tabela de pessoa que possui dependência com endereço:
+
+create table pessoa(
+	id int,
+	nome varchar(50),
+	cpf int,
+	id_endereco int,
+	primary key (id),
+	foreign key (id_endereco) references endereco
+);
+
+//Agora, a tabela de animais, que possui dependência com tipo_animal e pessoa, que será seu dono:
+
+create table animais(
+	id int,
+	nome varchar(50),
+	idade int,
+	descricao varchar(100),
+	id_tipo_animal int,
+	id_pessoa int,
+	primary key (id),
+	foreign key (id_tipo_animal) references tipo_animal,
+	foreign key (id_pessoa) references pessoa
+);
+
+//Criando sequências e inserindo nas tabelas:
+
+create sequence id_endereco;
+
+insert into endereco (select nextval('id_endereco'), 'Boehmerwald', 610, 89232, 'Joinville', 'Santa Catarina', 'Brasil');
+insert into endereco (select nextval('id_endereco'), 'Paulo Mitschiski??', 123, 4321, 'Joinville', 'Santa Catarina', 'Brasil');
+insert into endereco (select nextval('id_endereco'), 'Dona Francisca', 13, 13, 'Joinville', 'Santa Catarina', 'Brasil');
+
+create sequence id_pessoa;
+
+insert into pessoa (select nextval('id_pessoa'), 'Arthur', '123', '1');
+insert into pessoa (select nextval('id_pessoa'), 'Pedro', '321', '3');
+insert into pessoa (select nextval('id_pessoa'), 'Universitario', '10', '2');
+
+create sequence id_animais;
+
+insert into animais (select nextval('id_animais'), 'Totó', '7', 'É um cachorro bem grande!', 1, 1);
+insert into animais (select nextval('id_animais'), 'Garfield', '2', 'Um gato bem preguiçoso!', 2, 2);
+insert into animais (select nextval('id_animais'), 'Rapino', '5', 'Uma ave rápida...', 4, 2);
+insert into animais (select nextval('id_animais'), 'Cérebro', '1', 'Um rato inteligente!', 3, 3);
+
+//Verificar tabelas:
+
+select * from endereco;
+select * from pessoa;
+select * from animais;
+select * from tipo_animal;
+
+//Dropar sequências e tabelas:
+
+drop sequence id_endereco;
+drop sequence id_pessoa;
+drop sequence id_animais;
+
+drop table animais;
+drop table pessoa;
+drop table tipo_animal;
+drop table endereco;

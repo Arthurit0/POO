@@ -7,6 +7,13 @@ public class Endereco {
     private String cidade;
     private int idPessoa;
 
+    public Endereco(int id, String rua, int numero, String cidade) {
+        this.id = id;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -45,6 +52,14 @@ public class Endereco {
 
     public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
+    }
+
+    public String toString() {
+        String str = "";
+
+        str += "ID do Endereço: "+getId()+", Rua: "+getRua()+", Número: "+getNumero()+", Cidade: "+getCidade();
+
+        return str;
     }
 
 }
