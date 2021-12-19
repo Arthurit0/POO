@@ -1,17 +1,35 @@
 package dados;
 
 public class User {
+    private int id;
+
     private String login;
     private String senha;
 
-    public User(String login, String senha){
+    public User(int id, String login, String senha){
+        this.id = id;
         this.login = login;
         this.senha = senha;
     }
 
     public User(){
-        this.login = null;
-        this.senha = null;
+
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getLogin() {
@@ -22,22 +40,6 @@ public class User {
         return this.senha;
     }
 
-    public boolean setNovoLogin(String oldLogin, String newLogin) {
-        if(oldLogin.equals(login)){
-            login = newLogin;
-            return true;
-        }else{
-            return false;
-        }
-    }
 
-    public boolean setNovaSenha(String oldSenha, String newSenha) {
-        if(oldSenha.equals(senha)){
-            senha = newSenha;
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 }

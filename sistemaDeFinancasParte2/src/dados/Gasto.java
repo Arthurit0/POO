@@ -1,21 +1,47 @@
 package dados;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Gasto {
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private int id;
     private String nome;
-    private Data data;
+    private Date data = null;
     private String descricao;
     private float valor;
-    private Categorias categoria;
+    private int id_categoria;
+    private int id_usuario;
 
     public Gasto(){
     }
 
-    public Gasto(String nome, String descricao, Data data, float valor, int categoria){
+    public Gasto(String nome, String descricao, Date data, float valor, int id_categoria, int id_usuario){
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;
         this.valor = valor;
-        setCategoria(categoria);
+        this.id_categoria = id_categoria;
+        this.id_usuario = id_usuario;
+    }
+
+    public Gasto(int id, String nome, String descricao, String data, float valor, int id_categoria, int id_usuario) throws ParseException{
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.data = sdf.parse(data);
+        this.valor = valor;
+        this.id_categoria = id_categoria;
+        this.id_usuario = id_usuario;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -26,15 +52,15 @@ public class Gasto {
         this.nome = nome;
     }
 
-    public Data getData() {
+    public Date getData() {
         return this.data;
     }
 
-    public void setData(int dia, int mes, int ano) {
-        this.data = new Data(dia, mes, ano);
+    public String getStringData(){
+        return data.toString();
     }
 
-    public void setData(Data data){
+    public void setData(Date data){
         this.data = data;
     }
 
@@ -54,20 +80,26 @@ public class Gasto {
         this.valor = valor;
     }
 
-    public Categorias getCategoria() {
-        return this.categoria;
+    public int getCategoria() {
+        return this.id_categoria;
     }
 
-    public void setCategoria(int categoria) {
-        if(categoria >= 0  && categoria < 6){
-            this.categoria = Categorias.values()[categoria];
-        }
+    public void setCategoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
+    public int getId_usuario() {
+        return this.id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String toString() {
         String str = "";
         
-        str += "Gasto: "+this.nome+", Data: "+this.data+", Valor: R$ "+this.valor+", Categoria: "+this.categoria+"\nDescrição: "+this.descricao;
+        str += "ID: "+this.id+"Gasto: "+this.nome+", Data: "+this.data+", Valor: R$ "+this.valor+", Id da categoria: "+this.id_categoria+"\nDescrição: "+this.descricao;
 
         return str;
     }
