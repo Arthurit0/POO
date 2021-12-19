@@ -76,7 +76,8 @@ public class EnderecoDAO {
                 String rua = rs.getString(2);
                 int numero = rs.getInt(3);
                 String cidade = rs.getString(4);
-                return new Endereco(id, rua, numero, cidade);
+                int IdPessoa = rs.getInt(5); //ADICIONEI ESSA LINHA POIS DAVA ERRADO SEM
+                return new Endereco(id, rua, numero, cidade, IdPessoa);
             }
 
         } catch (SQLException e) {
@@ -101,7 +102,7 @@ public class EnderecoDAO {
 
     public void delete (Endereco endereco) throws DeleteException {
         try {
-            delete.setInt(1, endereco.getIdPessoa());
+            delete.setInt(1, endereco.getId());
             delete.executeUpdate();
         } catch (Exception e) {
             throw new DeleteException("Erro ao deletar endereço");

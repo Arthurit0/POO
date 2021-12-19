@@ -1,4 +1,4 @@
-package exemplo.persistencia;
+package exercicio.persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +18,7 @@ public class Conexao {
 
     public static Connection getConexao() throws ClassNotFoundException, SQLException {
         if(conexao == null){
-            String url = "jdbc:postgresql://localhost:5432/aulaPratica11";
+            String url = "jdbc:postgresql://localhost:5432/exercAulaPratica11";
             String usuario = "postgres";
             Class.forName("org.postgresql.Driver");
             conexao = DriverManager.getConnection(url, usuario, senha);

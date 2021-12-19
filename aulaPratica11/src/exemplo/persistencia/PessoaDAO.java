@@ -64,10 +64,16 @@ public class PessoaDAO {
             insert.setString(2, pessoa.getNome());
             insert.setInt(3, pessoa.getCpf());
             insert.setInt(4, pessoa.getTelefone());
-            insert.executeUpdate();
             
-            pessoa.getEndereco().setIdPessoa(pessoa.getId());
-            enderecoDAO.insert(pessoa.getEndereco());
+            Endereco endereco = pessoa.getEndereco();
+            int idPessoa = pessoa.getId();
+
+            endereco.setIdPessoa(idPessoa);
+
+            //pessoa.getEndereco().setIdPessoa(pessoa.getId()); DEU ERRADO!
+            
+            insert.executeUpdate();
+            enderecoDAO.insert(endereco);
         } catch (SQLException e) {
 
             throw new InsertException("Erro ao inserir pessoa");
@@ -76,11 +82,13 @@ public class PessoaDAO {
 
     public void delete(Pessoa p) throws DeleteException {
 
-        enderecoDAO.delete(p.getEndereco());
         try {
+            if(p.getEndereco() != null){
+                enderecoDAO.delete(p.getEndereco());
+            }
+            
             delete.setInt(1, p.getId());
             delete.executeUpdate();
-
         } catch (Exception e) {
 
             throw new DeleteException("Erro ao deletar pessoa");

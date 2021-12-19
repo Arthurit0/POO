@@ -7,11 +7,18 @@ public class Endereco {
     private String cidade;
     private int idPessoa;
 
-    public Endereco(int id, String rua, int numero, String cidade) {
+    public Endereco(String rua, int numero, String cidade) {
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+    }
+    
+    public Endereco(int id, String rua, int numero, String cidade, int IdPessoa) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.cidade = cidade;
+        this.idPessoa = IdPessoa;
     }
 
     public int getId() {
