@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import dados.Gasto;
+import dados.User;
 import negocio.Financas;
 import exceptions.*;
 
@@ -32,12 +33,14 @@ public class Main {
         do {
 
             do {
+                limpaTela();
                 menuDeLogin();
 
                 opLogin = Integer.parseInt(scanner.nextLine());
 
                 switch (opLogin) {
                     case 1:
+                    limpaTela();
                     System.out.println("\nDigite o login e senha do usuário:\n");
                     System.out.printf("Login: ");
                     String login = scanner.nextLine();
@@ -48,11 +51,20 @@ public class Main {
                         LoginBemSucedido = financas.login(login, senha);
                     } catch (SelectException | UsuarioNaoExisteException | SenhaIncorretaException e) {
                         System.err.println(e.getMessage());
-                        limpaTela();
+                        scanner.nextLine();
                     }
                         
                         break;
                 
+                    case 2:
+                        limpaTela();
+                        criaUsuario();
+                        break;
+                    
+                    case 3:
+                        limpaTela();
+                        deletaUsuario();
+                    
                     default:
                         break;
                 }
@@ -100,6 +112,34 @@ public class Main {
             limpaTela();
           
         } while (opMenu != 0);
+    }
+
+    private static void deletaUsuario() {
+        System.out.printf("Digite o login do usuário a ser deletado: ");
+        String login =  scanner.nextLine();
+
+        try {
+            financas.rmv(login);
+        } catch (DeleteException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private static void criaUsuario() {
+        User user = new User();
+        
+        System.out.println("Criando Usuário...\n");
+
+        System.out.printf("Digite o nome do seu usuário: ");
+        user.setLogin(scanner.nextLine());
+        System.out.printf("Digite a senha do usuário: ");
+        user.setSenha(scanner.nextLine());
+
+        try {
+            financas.add(user);
+        } catch (InsertException | SelectException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     private static void deletarGasto() {

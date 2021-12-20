@@ -71,7 +71,6 @@ public class Main {
         } while (op != 0);
     }
 
-
     private static void atualizaPessoa() {
         verPessoas();
     
@@ -114,7 +113,6 @@ public class Main {
 
     }
 
-
     private static void deletarPessoa() {
         verPessoas();
         try {
@@ -135,7 +133,6 @@ public class Main {
 
     }
 
-
     private static void verPessoas() {
         try {
             List<Pessoa> pessoas = sistema.selectAll();
@@ -151,7 +148,6 @@ public class Main {
             System.err.println(e.getMessage());
         }
     }
-
 
     private static void criarPessoa() {
 
@@ -183,7 +179,6 @@ public class Main {
             System.err.println(e.getMessage());
         }
     }
-
 
     private static void mostraMenu() {
             System.out.println("|======== Menu de Opções ========|");

@@ -75,4 +75,12 @@ public class Financas {
         gastos_logado = gastoDAO.selectAll(ID_logado);
     }
 
+    public void add(User user) throws InsertException, SelectException{
+        userDAO.insert(user);
+    }
+
+    public void rmv(String login) throws DeleteException{
+        userDAO.delete(login);
+    }
+
 }
