@@ -10,6 +10,7 @@ import exceptions.*;
 
 public class UserDAO {
     private static UserDAO instance = null;
+    private static GastoDAO gastoDAO = null;
 
     private PreparedStatement selectNewId;
     private PreparedStatement insert;
@@ -21,9 +22,11 @@ public class UserDAO {
         Connection conexao = Conexao.getConexao();
         selectNewId = conexao.prepareStatement("select nextval('id_usuario')");
         insert = conexao.prepareStatement("insert into usuario values (?,?,?)");
-        delete = conexao.prepareStatement("delete from usuario where login = ?");
+        delete = conexao.prepareStatement("delete from usuario where id = ?");
         selectFromLogin = conexao.prepareStatement("select * from usuario where login = ?");
         select = conexao.prepareStatement("select * from usuario where id = ?");
+
+        gastoDAO = GastoDAO.getInstance();
     }
 
     public static UserDAO getInstance() throws ClassNotFoundException, SQLException, SelectException {
@@ -34,7 +37,8 @@ public class UserDAO {
         return instance;
     }
 
-    private int SelectNewId() throws SelectException {
+    public int selectNewId() throws SelectException {
+
         try {
             ResultSet rs = selectNewId.executeQuery();
 
@@ -42,33 +46,37 @@ public class UserDAO {
                 return rs.getInt(1);
             }
 
-        } catch (SQLException e) {
-            throw new SelectException("Erro ao buscar novo id da tabela usuario");
+        } catch (Exception e) {
+            throw new SelectException("\nErro ao buscar novo id da tabela usuario! ");
         }
 
         return 0;
     }
 
-    public void insert(User user) throws InsertException, SelectException {
-        try {
-            insert.setInt(1, SelectNewId());
+    public void insert(User user) throws InsertException {
+        try {       
+            
+            insert.setInt(1, selectNewId());
             insert.setString(2, user.getLogin());
             insert.setString(3, user.getSenha());
 
             insert.executeUpdate();
-
         } catch (Exception e) {
-            throw new InsertException("Erro ao inserir usuário! ");
+            throw new InsertException("\nErro ao inserir usuário! ");
         }
     }
 
-    public void delete(String login) throws DeleteException {
+    public void delete(User user) throws DeleteException {
         try {
-            delete.setString(1, login);
+            if(!(gastoDAO.selectAll(user.getId()).isEmpty())){
+                gastoDAO.deleteAll(user.getId());
+            }
+
+            delete.setInt(1, user.getId());
             delete.executeUpdate();
 
         } catch (Exception e) {
-            throw new DeleteException("Erro ao deletar usuário! ");
+            throw new DeleteException("\nErro ao deletar usuário! ");
         }
     }
 
@@ -86,7 +94,7 @@ public class UserDAO {
             }
 
         } catch (SQLException e) {
-            throw new SelectException("(1) Erro ao retornar usuário! ");
+            throw new SelectException("\n(1) Erro ao retornar usuário! ");
         }
 
         return null;
@@ -107,7 +115,7 @@ public class UserDAO {
 
 
         } catch (Exception e) {
-            throw new SelectException("(2) Erro ao retornar usuário! ");
+            throw new SelectException("\n(2) Erro ao retornar usuário! ");
         }
         return null;
 

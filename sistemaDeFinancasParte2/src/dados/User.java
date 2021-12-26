@@ -2,7 +2,6 @@ package dados;
 
 public class User {
     private int id;
-
     private String login;
     private String senha;
 

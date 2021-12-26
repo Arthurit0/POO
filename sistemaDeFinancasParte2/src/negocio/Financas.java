@@ -31,7 +31,7 @@ public class Financas {
         User usuario = userDAO.selectFromLogin(login);
 
         if(usuario == null){
-            throw new UsuarioNaoExisteException("Usuário não registrado!");
+            throw new UsuarioNaoExisteException("\nUsuário não registrado! ");
         }
 
         if(usuario.getSenha().equals(senha)){
@@ -40,10 +40,8 @@ public class Financas {
 
             return true;
         }else{
-            throw new SenhaIncorretaException("Senha Incorreta!");
+            throw new SenhaIncorretaException("\nSenha Incorreta! ");
         }
-
-
     }
 
     public void logoff(){
@@ -51,22 +49,45 @@ public class Financas {
         gastos_logado.clear();
     }
 
-    public void add(Gasto gasto) throws InsertException, SelectException{
+    public void addGasto(Gasto gasto) throws InsertException, SelectException{
         gasto.setId_usuario(ID_logado);
         gastoDAO.insert(gasto);
     }
 
-    public List<Gasto> seeAll() throws SelectException{
+    public List<Gasto> seeAllGastos() throws SelectException{
         loadGastos();
         return gastos_logado;
     }
 
-    public void rmv(Gasto gasto) throws DeleteException{
+    public Gasto selectGasto(int id) throws SelectException{
+        return gastoDAO.select(id);
+    }
+
+    public List<Gasto> selectGastosFromCategoria(int cat) throws SelectException{
+        return gastoDAO.selectFromCateg(cat, ID_logado);
+    }
+
+    public List<Gasto> selectGastosFromMes(int mes) throws SelectException{
+        String mesString = "";
+
+        if(mes > 0 && mes <=12){
+            if(mes < 10){
+                mesString += "0"+mes;
+            }else{
+                mesString += mes;
+            }
+        }
+
+        return gastoDAO.selectFromMes(mesString, ID_logado);
+
+    }
+
+    public void removeGasto(Gasto gasto) throws DeleteException{
         gasto.setId_usuario(ID_logado);
         gastoDAO.delete(gasto);
     }
 
-    public void updt(Gasto gasto) throws UpdateException{
+    public void updateGasto(Gasto gasto) throws UpdateException{
         gasto.setId_usuario(ID_logado);
         gastoDAO.update(gasto);
     }
@@ -75,12 +96,12 @@ public class Financas {
         gastos_logado = gastoDAO.selectAll(ID_logado);
     }
 
-    public void add(User user) throws InsertException, SelectException{
+    public void addUser(User user) throws InsertException, SelectException{
         userDAO.insert(user);
     }
 
-    public void rmv(String login) throws DeleteException{
-        userDAO.delete(login);
+    public void removeUser(String login) throws DeleteException, SelectException{
+        userDAO.delete(userDAO.selectFromLogin(login));
     }
 
 }

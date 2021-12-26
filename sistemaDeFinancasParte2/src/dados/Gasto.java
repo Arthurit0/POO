@@ -52,12 +52,8 @@ public class Gasto {
         this.nome = nome;
     }
 
-    public Date getData() {
-        return this.data;
-    }
-
-    public String getStringData(){
-        return data.toString();
+    public String getData(){
+        return sdf.format(data);
     }
 
     public void setData(Date data){
@@ -99,7 +95,39 @@ public class Gasto {
     public String toString() {
         String str = "";
         
-        str += "ID: "+this.id+"Gasto: "+this.nome+", Data: "+this.data+", Valor: R$ "+this.valor+", Id da categoria: "+this.id_categoria+"\nDescrição: "+this.descricao;
+        str += "ID: "+this.id+", "+this.nome+", Data: "+getData()+", Valor: R$ "+this.valor+", Categoria: ";
+        
+        switch (id_categoria) {
+            case 1:
+                str += "Comida";
+                break;
+
+            case 2:
+                str += "Lazer";
+                break;
+
+            case 3:
+                str += "Educação";
+                break;
+            
+            case 4:
+                str += "Saúde";
+                break;
+
+            case 5:
+                str += "Transporte";
+                break;
+
+            case 6:
+                str += "Outros";
+                break;
+
+            default:
+                str += "?";
+                break;
+        }
+
+        str += "\nDescrição: "+this.descricao;
 
         return str;
     }
