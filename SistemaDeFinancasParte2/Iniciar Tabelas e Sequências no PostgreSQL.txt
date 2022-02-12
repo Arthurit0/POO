@@ -35,5 +35,12 @@ select * from usuario;
 select * from gasto;
 select * from categoria;
 
-delete from gasto;
-delete from usuario;
+DELETAR TUDO:
+
+drop sequence id_categoria;
+drop sequence id_gasto;
+drop sequence id_usuario;
+
+drop table gasto;
+drop table usuario;
+drop table categoria;

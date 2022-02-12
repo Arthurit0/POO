@@ -1,0 +1,39 @@
+create sequence id_usuario;
+create sequence id_gasto;
+create sequence id_categoria;
+
+create table categoria(
+	id int,
+	nome_da_categoria varchar(50),
+	primary key(id)
+);
+
+insert into categoria values((select nextval('id_categoria')), 'Comida'), ((select nextval('id_categoria')), 'Lazer'), ((select nextval('id_categoria')), 'Educacao'), 
+((select nextval('id_categoria')), 'Saude'), ((select nextval('id_categoria')), 'Transporte'), ((select nextval('id_categoria')), 'Outros');
+
+create table usuario(
+	id int,
+	login varchar(50),
+	senha varchar(50),
+	primary key (id)
+);
+
+create table gasto(
+	id int,
+	nome varchar(50),
+	descricao varchar(300),
+	data_do_gasto varchar(50),
+	valor float,
+	id_categoria int,
+	id_usuario int,
+	primary key (id),
+	foreign key (id_categoria) references categoria,
+	foreign key (id_usuario) references usuario
+);
+
+select * from usuario;
+select * from gasto;
+select * from categoria;
+
+delete from gasto;
+delete from usuario;
