@@ -31,7 +31,7 @@ public class Financas {
         User usuario = userDAO.selectFromLogin(login);
 
         if(usuario == null){
-            throw new UsuarioNaoExisteException("\nUsuário não registrado! ");
+            throw new UsuarioNaoExisteException("Usuário não registrado! ");
         }
 
         if(usuario.getSenha().equals(senha)){
@@ -40,7 +40,7 @@ public class Financas {
 
             return true;
         }else{
-            throw new SenhaIncorretaException("\nSenha Incorreta! ");
+            throw new SenhaIncorretaException("Senha Incorreta! ");
         }
     }
 

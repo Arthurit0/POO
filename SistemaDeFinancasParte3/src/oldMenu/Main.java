@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
-import apresentacao.Janela;
 import dados.Gasto;
 import dados.User;
 import negocio.Financas;
@@ -17,9 +16,6 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     public static void main(String[] args) {
-        Janela databaseMenu = new Janela();
-        databaseMenu.setVisible(true);
-
         int opLogin = 0, opMenu = 0;
 
         System.out.printf("Digite a senha do Banco de Dados: ");

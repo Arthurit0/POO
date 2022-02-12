@@ -30,10 +30,3 @@ create table gasto(
 	foreign key (id_categoria) references categoria,
 	foreign key (id_usuario) references usuario
 );
-
-select * from usuario;
-select * from gasto;
-select * from categoria;
-
-delete from gasto;
-delete from usuario;
