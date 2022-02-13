@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
+import apresentacao.TelaLoginUsuario;
 import dados.Gasto;
 import dados.User;
 import negocio.Financas;
@@ -18,14 +19,10 @@ public class Main {
     public static void main(String[] args) {
         int opLogin = 0, opMenu = 0;
 
-        System.out.printf("Digite a senha do Banco de Dados: ");
-        String senhaBdD = scanner.nextLine();
-
         try {
-            financas = new Financas(senhaBdD);
+            financas = new Financas();
         } catch (ClassNotFoundException | SQLException | SelectException e) {
-            System.err.println(e.getMessage());
-            System.exit(0);
+            System.err.print(e.getMessage());
         }
 
         boolean LoginBemSucedido = false;
@@ -36,6 +33,8 @@ public class Main {
                 if(LoginBemSucedido == false){
                     limpaTela();
                     menuDeLogin();
+                    TelaLoginUsuario telaLoginUsuario = new TelaLoginUsuario(financas);
+                    telaLoginUsuario.setVisible(true);
 
                     opLogin = Integer.parseInt(scanner.nextLine());
 
@@ -49,7 +48,7 @@ public class Main {
                         String senha = scanner.nextLine();
         
                         try {
-                            LoginBemSucedido = financas.login(login, senha);
+                            financas.login(login, senha);
                             System.out.println();
                         } catch (SelectException | UsuarioNaoExisteException | SenhaIncorretaException e) {
                             System.err.printf(e.getMessage());

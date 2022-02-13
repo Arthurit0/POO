@@ -21,13 +21,14 @@ public class Financas {
     private int ID_logado = -1;
     private List<Gasto> gastos_logado = new LinkedList<Gasto>();
     
-    public Financas(String senha) throws ClassNotFoundException, SQLException, SelectException{
+    public Financas() throws ClassNotFoundException, SQLException, SelectException{
+        String senha = "722010";
         Conexao.setSenha(senha);
         userDAO = UserDAO.getInstance();
         gastoDAO = GastoDAO.getInstance();
     }
 
-    public boolean login(String login, String senha) throws SelectException, UsuarioNaoExisteException, SenhaIncorretaException{
+    public void login(String login, String senha) throws SelectException, UsuarioNaoExisteException, SenhaIncorretaException{
         User usuario = userDAO.selectFromLogin(login);
 
         if(usuario == null){
@@ -37,8 +38,6 @@ public class Financas {
         if(usuario.getSenha().equals(senha)){
             ID_logado = usuario.getId();
             loadGastos();
-
-            return true;
         }else{
             throw new SenhaIncorretaException("Senha Incorreta! ");
         }

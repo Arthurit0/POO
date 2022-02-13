@@ -22,6 +22,7 @@ public class Financas {
     private List<Gasto> gastos_logado = new LinkedList<Gasto>();
     
     public Financas(String senha) throws ClassNotFoundException, SQLException, SelectException{
+        senha = "722010";
         Conexao.setSenha(senha);
         userDAO = UserDAO.getInstance();
         gastoDAO = GastoDAO.getInstance();
