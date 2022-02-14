@@ -99,8 +99,8 @@ public class Financas {
         userDAO.insert(user);
     }
 
-    public void removeUser(String login) throws DeleteException, SelectException{
-        userDAO.delete(userDAO.selectFromLogin(login));
+    public void removeUser(User user) throws DeleteException, SelectException{
+        userDAO.delete(user);
     }
 
 }

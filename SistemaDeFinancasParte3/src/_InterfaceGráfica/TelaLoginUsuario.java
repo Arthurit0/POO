@@ -1,45 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package apresentacao;
+package _InterfaceGráfica;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import exceptions.SelectException;
 import exceptions.SenhaIncorretaException;
 import exceptions.UsuarioNaoExisteException;
 import negocio.Financas;
 
-/**
- *
- * @author Arthur
- */
 public class TelaLoginUsuario extends javax.swing.JFrame {
 
     static Financas financas;
+    private JButton jButtonDeletarConta;
+    private JButton jButtonEntrar;
+    private JButton jButtonNovoUsuario;
+    private JLabel jLabelLogin;
+    private JLabel jLabelPassword;
+    private JLabel jLabelTitulo;
+    private static JPanel jPanel1;
+    private JPasswordField jPasswordFieldSenha;
+    private JTextField jTextFieldLogin;
 
-    /**
-     * Creates new form TelaLoginUsuario
-     */
     public TelaLoginUsuario(Financas financas) {
         TelaLoginUsuario.financas = financas;
         initComponents();
     }
-    
-    public void close(){
- 
-        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
-        
+
+    public TelaLoginUsuario() {
+        System.out.printf("Primeira instância");
+        try {
+            TelaLoginUsuario.financas = new Financas();
+        } catch (ClassNotFoundException | SQLException | SelectException e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
+        initComponents();
+    }
 
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLogin = new javax.swing.JLabel();
@@ -50,55 +58,50 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
         jButtonNovoUsuario = new javax.swing.JButton();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+        int width = 600;
+        int height = 500;
         setPreferredSize(new java.awt.Dimension(600, 500));
+        setBounds(center.x - width / 2, center.y - height / 2, width, height);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(205, 241, 241));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 255), 6, true));
 
-        jLabelTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 48)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 48));
         jLabelTitulo.setText("Login de Usuário");
         jLabelTitulo.setToolTipText("");
 
-        jLabelLogin.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabelLogin.setFont(new java.awt.Font("Roboto", 0, 24));
         jLabelLogin.setText("Login");
 
-        jLabelPassword.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabelPassword.setFont(new java.awt.Font("Roboto", 0, 24));
         jLabelPassword.setText("Senha");
 
-        jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLoginActionPerformed(evt);
-            }
-        });
-
-        jButtonEntrar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jButtonEntrar.setFont(new java.awt.Font("Roboto", 0, 12));
         jButtonEntrar.setText("Entrar");
-        jButtonEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonEntrarMouseClicked(evt);
+        jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEntrarActionPerformed(evt);
             }
         });
 
         jButtonDeletarConta.setBackground(new java.awt.Color(255, 102, 102));
-        jButtonDeletarConta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jButtonDeletarConta.setFont(new java.awt.Font("Roboto", 0, 12));
         jButtonDeletarConta.setText("Deletar Conta");
-        jButtonDeletarConta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonDeletarContaMouseClicked(evt);
+        jButtonDeletarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeletarContaActionPerformed(evt);
             }
         });
 
-        jButtonNovoUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jButtonNovoUsuario.setFont(new java.awt.Font("Roboto", 0, 12));
         jButtonNovoUsuario.setText("Criar novo usuário");
-        jButtonNovoUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonNovoUsuarioMouseClicked(evt);
+        jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoUsuarioActionPerformed(evt);
             }
         });
 
@@ -169,18 +172,10 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        // pack();
     }// </editor-fold>                        
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
-
-    private void jButtonEntrarMouseClicked(java.awt.event.MouseEvent evt) {                                           
+    protected void jButtonEntrarActionPerformed(ActionEvent evt) {
         String login = jTextFieldLogin.getText();
         String decodedPassword = "";
         char[] password = jPasswordFieldSenha.getPassword();
@@ -191,67 +186,56 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
 
         try {
             financas.login(login, decodedPassword);
-
-            
         } catch (SelectException | UsuarioNaoExisteException | SenhaIncorretaException e) {
-            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
+    }
 
-    }                                          
+    protected void jButtonNovoUsuarioActionPerformed(ActionEvent evt) {
+        JFrame telaCadastroUsuario = new TelaCadastroUsuario(financas);
+        telaCadastroUsuario.setVisible(true);
+        dispose();
+    }
 
-    private void jButtonNovoUsuarioMouseClicked(java.awt.event.MouseEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
+    protected void jButtonDeletarContaActionPerformed(ActionEvent evt) {
+        JFrame telaDeletarUsuario = new TelaDeletarUsuario(financas);
+        telaDeletarUsuario.setVisible(true);
+        dispose();
+    }
 
-    private void jButtonDeletarContaMouseClicked(java.awt.event.MouseEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        // /* Set the Nimbus look and feel */
+        // //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        // /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        //  * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        //  */
+        // try {
+        //     for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        //         if ("Nimbus".equals(info.getName())) {
+        //             javax.swing.UIManager.setLookAndFeel(info.getClassName());
+        //             break;
+        //         }
+        //     }
+        // } catch (ClassNotFoundException ex) {
+        //     java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // } catch (InstantiationException ex) {
+        //     java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // } catch (IllegalAccessException ex) {
+        //     java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        //     java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // }
+        // //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLoginUsuario(financas).setVisible(true);
+                if(financas == null){
+                    new TelaLoginUsuario().setVisible(true);
+                }else{
+                    // new TelaLoginUsuario(financas).setVisible(true);
+                }
             }
         });
     }
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton jButtonDeletarConta;
-    private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JButton jButtonNovoUsuario;
-    private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JLabel jLabelPassword;
-    private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextFieldLogin;
-    // End of variables declaration                   
 }

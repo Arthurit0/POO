@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
-import apresentacao.TelaLoginUsuario;
 import dados.Gasto;
 import dados.User;
 import negocio.Financas;
@@ -19,13 +18,13 @@ public class Main {
     public static void main(String[] args) {
         int opLogin = 0, opMenu = 0;
 
+        boolean LoginBemSucedido = false;
+
         try {
             financas = new Financas();
         } catch (ClassNotFoundException | SQLException | SelectException e) {
             System.err.print(e.getMessage());
         }
-
-        boolean LoginBemSucedido = false;
 
         do {
 
@@ -33,8 +32,6 @@ public class Main {
                 if(LoginBemSucedido == false){
                     limpaTela();
                     menuDeLogin();
-                    TelaLoginUsuario telaLoginUsuario = new TelaLoginUsuario(financas);
-                    telaLoginUsuario.setVisible(true);
 
                     opLogin = Integer.parseInt(scanner.nextLine());
 
@@ -49,6 +46,7 @@ public class Main {
         
                         try {
                             financas.login(login, senha);
+                            LoginBemSucedido = true;
                             System.out.println();
                         } catch (SelectException | UsuarioNaoExisteException | SenhaIncorretaException e) {
                             System.err.printf(e.getMessage());
@@ -179,10 +177,15 @@ public class Main {
 
     private static void deletaUsuario() {
         System.out.printf("Digite o login do usuário a ser deletado: ");
-        String login =  scanner.nextLine();
+        String login = scanner.nextLine();
+        String senha = scanner.nextLine();
+
+        User deletado = new User();
+        deletado.setLogin(login);
+        deletado.setSenha(senha); 
 
         try {
-            financas.removeUser(login);
+            financas.removeUser(deletado);
             System.out.println();
         } catch (DeleteException | SelectException e) {
             System.err.println(e.getMessage());
