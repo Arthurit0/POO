@@ -68,12 +68,17 @@ public class UserDAO {
 
     public void delete(User user) throws DeleteException {
         try {
-            if(!(gastoDAO.selectAll(user.getId()).isEmpty())){
-                gastoDAO.deleteAll(user.getId());
-            }
+            selectFromLogin.setString(1, user.getLogin());
+            ResultSet rs = selectFromLogin.executeQuery();
 
-            delete.setInt(1, user.getId());
-            delete.executeUpdate();
+            if(rs.next()){
+                String password = rs.getString(3);
+                if(password.equals(user.getSenha())){
+                    System.out.printf(password+" e "+user.getSenha());
+                    delete.setInt(1, rs.getInt(1));
+                    delete.executeUpdate();
+                }
+            }
 
         } catch (Exception e) {
             throw new DeleteException("\nErro ao deletar usuário! ");

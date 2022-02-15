@@ -152,6 +152,7 @@ public class TelaDeletarUsuario extends javax.swing.JFrame {
 
         try {
             financas.removeUser(deletado);
+            JOptionPane.showMessageDialog(jPanel1, "Usuário Excluído com Sucesso!", "Sucesso!", JOptionPane.OK_CANCEL_OPTION);
             JFrame telaLogin = new TelaLoginUsuario(financas);
             telaLogin.setVisible(true);
             this.dispose();

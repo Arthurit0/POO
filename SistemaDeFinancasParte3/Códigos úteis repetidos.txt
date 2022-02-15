@@ -3,7 +3,7 @@ Centralizar Na Tela:
     Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
     int width = 600;
     int height = 500;
-    setPreferredSize(new java.awt.Dimension(600, 500));
+    setPreferredSize(new java.awt.Dimension(width, height));
     setBounds(center.x - width / 2, center.y - height / 2, width, height);
 
 Mensagem de Erro:

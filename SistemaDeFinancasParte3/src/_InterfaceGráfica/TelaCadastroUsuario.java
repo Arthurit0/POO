@@ -152,6 +152,7 @@ public class TelaCadastroUsuario extends JFrame{
 
         try {
             financas.addUser(novoUsuario);
+            JOptionPane.showMessageDialog(jPanel1, "Usuário Cadastrado com sucesso!", "Sucesso!", JOptionPane.OK_CANCEL_OPTION);
             JFrame telaLogin = new TelaLoginUsuario(financas);
             telaLogin.setVisible(true);
             this.dispose();
