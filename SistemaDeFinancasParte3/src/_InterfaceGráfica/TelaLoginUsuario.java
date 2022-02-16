@@ -37,7 +37,6 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
     }
 
     public TelaLoginUsuario() {
-        System.out.printf("Primeira instância");
         try {
             TelaLoginUsuario.financas = new Financas();
         } catch (ClassNotFoundException | SQLException | SelectException e) {
@@ -47,7 +46,6 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
     }
 
     private void initComponents() {
-
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLogin = new javax.swing.JLabel();
@@ -59,13 +57,11 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
         jPasswordFieldSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         int width = 600;
         int height = 500;
-        setPreferredSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(width, height));
         setBounds(center.x - width / 2, center.y - height / 2, width, height);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(205, 241, 241));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 255), 6, true));
@@ -74,13 +70,17 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
         jLabelTitulo.setText("Login de Usuário");
         jLabelTitulo.setToolTipText("");
 
-        jLabelLogin.setFont(new java.awt.Font("Roboto", 0, 24));
+        jLabelLogin.setFont(new java.awt.Font("Roboto Lt", 0, 24));
+        jLabelLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLogin.setText("Login");
 
-        jLabelPassword.setFont(new java.awt.Font("Roboto", 0, 24));
+        jLabelPassword.setFont(new java.awt.Font("Roboto Lt", 0, 24));
+        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPassword.setText("Senha");
 
-        jButtonEntrar.setFont(new java.awt.Font("Roboto", 0, 12));
+        jTextFieldLogin.setFont(new java.awt.Font("Roboto", 0, 14));
+
+        jButtonEntrar.setFont(new java.awt.Font("Roboto Cn", 0, 14));
         jButtonEntrar.setText("Entrar");
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +89,7 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
         });
 
         jButtonDeletarConta.setBackground(new java.awt.Color(255, 102, 102));
-        jButtonDeletarConta.setFont(new java.awt.Font("Roboto", 0, 12));
+        jButtonDeletarConta.setFont(new java.awt.Font("Roboto Cn", 0, 14));
         jButtonDeletarConta.setText("Deletar Conta");
         jButtonDeletarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +97,7 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButtonNovoUsuario.setFont(new java.awt.Font("Roboto", 0, 12));
+        jButtonNovoUsuario.setFont(new java.awt.Font("Roboto Cn", 0, 14));
         jButtonNovoUsuario.setText("Criar novo usuário");
         jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +105,7 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
             }
         });
 
+        jPasswordFieldSenha.setFont(new java.awt.Font("Roboto", 0, 14));
         jPasswordFieldSenha.setText("123");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -115,14 +116,8 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 144, Short.MAX_VALUE)
+                        .addGap(0, 131, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelLogin)
-                                .addGap(264, 264, 264))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelPassword)
-                                .addGap(260, 260, 260))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelTitulo)
                                 .addGap(125, 125, 125))
@@ -133,7 +128,9 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextFieldLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                                     .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPasswordFieldSenha))
+                                    .addComponent(jPasswordFieldSenha)
+                                    .addComponent(jLabelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(201, 201, 201))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonDeletarConta)
@@ -156,7 +153,7 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
                 .addComponent(jButtonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonNovoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jButtonDeletarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -171,6 +168,7 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
     }               
 
     protected void jButtonEntrarActionPerformed(ActionEvent evt) {
@@ -206,17 +204,28 @@ public class TelaLoginUsuario extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-        new TelaLoginUsuario().setVisible(true);
 
-        // /* Create and display the form */
-        // java.awt.EventQueue.invokeLater(new Runnable() {
-        //     public void run() {
-        //         if(financas == null){
-        //             new TelaLoginUsuario().setVisible(true);
-        //         }else{
-        //             // new TelaLoginUsuario(financas).setVisible(true);
-        //         }
-        //     }
-        // });
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaLoginUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaLoginUsuario().setVisible(true);
+            }
+        });
     }
 }

@@ -34,7 +34,6 @@ public class TelaCadastroUsuario extends JFrame{
     }
 
     private void initComponents() {
-
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLogin = new javax.swing.JLabel();
@@ -45,15 +44,14 @@ public class TelaCadastroUsuario extends JFrame{
         jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(205, 241, 241));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 255), 6, true));
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         int width = 600;
         int height = 500;
-        setPreferredSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(width, height));
         setBounds(center.x - width / 2, center.y - height / 2, width, height);
-        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(205, 241, 241));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 255), 6, true));
 
         jLabelTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 48));
         jLabelTitulo.setText("Cadastro de Usuário");
@@ -67,7 +65,9 @@ public class TelaCadastroUsuario extends JFrame{
         jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPassword.setText("Digite sua Senha");
 
-        jButtonCadastrar.setFont(new java.awt.Font("Roboto", 0, 12));
+        jTextFieldLogin.setFont(new java.awt.Font("Roboto", 0, 14));
+
+        jButtonCadastrar.setFont(new java.awt.Font("Roboto Cn", 0, 14));
         jButtonCadastrar.setText("Cadastrar Usuário");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,9 @@ public class TelaCadastroUsuario extends JFrame{
             }
         });
 
-        jButtonCancelar.setFont(new java.awt.Font("Roboto", 0, 12));
+        jPasswordFieldSenha.setFont(new java.awt.Font("Roboto", 0, 14));
+
+        jButtonCancelar.setFont(new java.awt.Font("Roboto Cn", 0, 14));
         jButtonCancelar.setText("Cancelar Cadastro");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,10 +119,10 @@ public class TelaCadastroUsuario extends JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,7 +136,6 @@ public class TelaCadastroUsuario extends JFrame{
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
     }                                                                                                                                 
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {                                                 
@@ -168,11 +169,6 @@ public class TelaCadastroUsuario extends JFrame{
     }                                               
 
     // public static void main(String args[]) {
-    //     /* Set the Nimbus look and feel */
-    //     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    //     /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-    //      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-    //      */
     //     try {
     //         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
     //             if ("Nimbus".equals(info.getName())) {
@@ -189,8 +185,6 @@ public class TelaCadastroUsuario extends JFrame{
     //     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
     //         java.util.logging.Logger.getLogger(TelaCadastroUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     //     }
-
-    //     /* Create and display the form */
     //     java.awt.EventQueue.invokeLater(new Runnable() {
     //         public void run() {
     //             new TelaCadastroUsuario(financas).setVisible(true);
