@@ -3,25 +3,25 @@ package _InterfaceGráfica;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import dados.User;
 import exceptions.DeleteException;
 import exceptions.SelectException;
 import negocio.Financas;
 
-public class TelaDeletarUsuario extends javax.swing.JFrame {
+public class TelaDeletarUsuario extends JFrame {
 
     static Financas financas;
-    private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JLabel jLabelPassword;
-    private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordFieldSenha;
-    private javax.swing.JTextField jTextFieldLogin;
+    private JButton jButtonCancelar;
+    private JButton jButtonExcluir;
+    private JLabel jLabelLogin;
+    private JLabel jLabelPassword;
+    private JLabel jLabelTitulo;
+    private JPanel jPanel;
+    private JPasswordField jPasswordFieldSenha;
+    private JTextField jTextFieldLogin;
 
     public TelaDeletarUsuario(Financas financas) {
         TelaDeletarUsuario.financas = financas;
@@ -29,35 +29,37 @@ public class TelaDeletarUsuario extends javax.swing.JFrame {
     }
                         
     private void initComponents() {
-        jPanel1 = new javax.swing.JPanel();
-        jLabelTitulo = new javax.swing.JLabel();
-        jLabelLogin = new javax.swing.JLabel();
-        jLabelPassword = new javax.swing.JLabel();
-        jTextFieldLogin = new javax.swing.JTextField();
-        jButtonExcluir = new javax.swing.JButton();
-        jPasswordFieldSenha = new javax.swing.JPasswordField();
-        jButtonCancelar = new javax.swing.JButton();
+        jPanel = new JPanel();
+        jLabelTitulo = new JLabel();
+        jLabelLogin = new JLabel();
+        jLabelPassword = new JLabel();
+        jTextFieldLogin = new JTextField();
+        jButtonExcluir = new JButton();
+        jPasswordFieldSenha = new JPasswordField();
+        jButtonCancelar = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         Point center = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
         int width = 600;
         int height = 500;
         setPreferredSize(new java.awt.Dimension(width, height));
         setBounds(center.x - width / 2, center.y - height / 2, width, height);
+        setResizable(false);
+        setTitle("Exclusão de Usuário");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(241, 205, 205));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 50, 50), 6, true));
+        jPanel.setBackground(new java.awt.Color(241, 205, 205));
+        jPanel.setBorder(new LineBorder(new java.awt.Color(255, 50, 50), 6, true));
 
         jLabelTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 48));
         jLabelTitulo.setText("Excluir Usuário");
         jLabelTitulo.setToolTipText("");
 
         jLabelLogin.setFont(new java.awt.Font("Roboto Lt", 0, 24));
-        jLabelLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLogin.setHorizontalAlignment(SwingConstants.CENTER);
         jLabelLogin.setText("Digite seu login");
 
         jLabelPassword.setFont(new java.awt.Font("Roboto Lt", 0, 24));
-        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPassword.setHorizontalAlignment(SwingConstants.CENTER);
         jLabelPassword.setText("Digite sua Senha");
 
         jTextFieldLogin.setFont(new java.awt.Font("Roboto", 0, 14));
@@ -81,58 +83,58 @@ public class TelaDeletarUsuario extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        GroupLayout jPanelLayout = new GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addContainerGap(155, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                         .addComponent(jLabelTitulo)
                         .addGap(149, 149, 149))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLayout.createSequentialGroup()
+                            .addComponent(jLabelPassword, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
                             .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                            .addGroup(jPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldLogin, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                .addComponent(jPasswordFieldSenha, GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonExcluir, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCancelar, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelLogin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(201, 201, 201)))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabelTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldLogin, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordFieldSenha, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonExcluir, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(jButtonCancelar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }                     
 
@@ -151,45 +153,21 @@ public class TelaDeletarUsuario extends javax.swing.JFrame {
 
         try {
             financas.removeUser(deletado);
-            JOptionPane.showMessageDialog(jPanel1, "Usuário Excluído com Sucesso!", "Sucesso!", JOptionPane.OK_CANCEL_OPTION);
-            JFrame telaLogin = new TelaLoginUsuario(financas);
-            telaLogin.setVisible(true);
-            this.dispose();
+            JOptionPane.showMessageDialog(jPanel, "Usuário Excluído com Sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            backToMenu();
         } catch (DeleteException | SelectException e) {
-            JOptionPane.showMessageDialog(jPanel1, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(jPanel, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
     }                                                                        
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        backToMenu();
+    }
+
+    private void backToMenu() {
         JFrame telaLogin = new TelaLoginUsuario(financas);
         telaLogin.setVisible(true);
-        this.dispose();
-    }                     
+        dispose();
+    }                  
 
-    // public static void main(String args[]) {
-
-    //     try {
-    //         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-    //             if ("Nimbus".equals(info.getName())) {
-    //                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
-    //                 break;
-    //             }
-    //         }
-    //     } catch (ClassNotFoundException ex) {
-    //         java.util.logging.Logger.getLogger(TelaDeletarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (InstantiationException ex) {
-    //         java.util.logging.Logger.getLogger(TelaDeletarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (IllegalAccessException ex) {
-    //         java.util.logging.Logger.getLogger(TelaDeletarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-    //         java.util.logging.Logger.getLogger(TelaDeletarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     }
-
-    //     /* Create and display the form */
-    //     java.awt.EventQueue.invokeLater(new Runnable() {
-    //         public void run() {
-    //             new TelaDeletarUsuario(financas).setVisible(true);
-    //         }
-    //     });
-    // }
 }

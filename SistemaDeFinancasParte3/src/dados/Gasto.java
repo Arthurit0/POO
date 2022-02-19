@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Gasto {
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
     private int id;
     private String nome;
     private Date data = null;
@@ -130,6 +130,22 @@ public class Gasto {
         str += "\nDescrição: "+this.descricao;
 
         return str;
+    }
+
+    public boolean equals(Object o){
+        if(o.getClass() == this.getClass()){
+            Gasto obj = (Gasto) o;
+
+            if((obj.id == this.id) 
+                && (obj.nome.equals(this.nome)) 
+                && (obj.data.equals(this.data)) 
+                && (obj.valor == this.valor) 
+                && (obj.id_categoria == this.id_categoria)
+                && (obj.descricao.equals(this.descricao))){
+                    return true;
+            }
+        }
+        return false;
     }
 
 }

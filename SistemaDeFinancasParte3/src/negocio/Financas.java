@@ -4,16 +4,18 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JTable;
+
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+import _InterfaceGráfica.TabelaGastos;
 import dados.*;
-import exceptions.DeleteException;
-import exceptions.InsertException;
-import exceptions.SelectException;
-import exceptions.SenhaIncorretaException;
-import exceptions.UpdateException;
-import exceptions.UsuarioNaoExisteException;
-import persistencia.Conexao;
-import persistencia.GastoDAO;
-import persistencia.UserDAO;
+import exceptions.*;
+import persistencia.*;
 
 public class Financas {
     private UserDAO userDAO; 
@@ -101,6 +103,177 @@ public class Financas {
 
     public void removeUser(User user) throws DeleteException, SelectException{
         userDAO.delete(user);
+    }
+
+    public JTable tabelaDeGastos() throws SelectException{
+        TabelaGastos tabelaDeGastos = new TabelaGastos();
+        JTable tabela = new JTable(tabelaDeGastos);
+        
+        tabela.setFont(new java.awt.Font("Roboto", 0, 14));
+        tabela.setRowHeight(30);
+
+
+        tabelaDeGastos.populateGastos(seeAllGastos());
+
+
+        tabela.getColumnModel().getColumn(0).setResizable(false);
+        tabela.getColumnModel().getColumn(1).setResizable(false);
+        tabela.getColumnModel().getColumn(2).setResizable(false);
+        tabela.getColumnModel().getColumn(3).setResizable(false);
+        tabela.getColumnModel().getColumn(4).setResizable(false);
+
+        return tabela;
+    }
+
+    public JTable tabelaDeGastos(List<Gasto> gastos){
+        TabelaGastos tabelaDeGastos = new TabelaGastos();
+        JTable tabela = new JTable(tabelaDeGastos);
+        
+        tabela.setFont(new java.awt.Font("Roboto", 0, 14));
+        tabela.setRowHeight(30);
+
+        tabelaDeGastos.populateGastos(gastos);
+
+        tabela.getColumnModel().getColumn(0).setResizable(false);
+        tabela.getColumnModel().getColumn(1).setResizable(false);
+        tabela.getColumnModel().getColumn(2).setResizable(false);
+        tabela.getColumnModel().getColumn(3).setResizable(false);
+        tabela.getColumnModel().getColumn(4).setResizable(false);
+
+        return tabela;
+    }
+
+    public String numDaCateg(int cat){
+        switch (cat) {
+            case 1:
+                return "Comida";
+            case 2:
+                return "Lazer";
+            case 3:
+                return "Educação";
+            case 4:
+                return "Saúde";
+            case 5:
+                return "Transporte";
+            case 6:
+                return "Outros";
+        
+            default:
+                return null;
+        }
+    }
+
+    public CategoryDataset barraDeGastos(){
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        float comida = 0, lazer = 0, educacao = 0, saude = 0, transporte = 0, outros = 0;
+
+        for (Gasto gasto : gastos_logado) {
+            int cat = gasto.getCategoria();
+            float valor = gasto.getValor();
+
+            switch (cat) {
+                case 1:
+                    comida += valor;
+                    break;
+                case 2:
+                    lazer += valor;
+                    break;
+                case 3:
+                    educacao += valor;
+                    break;
+                case 4:
+                    saude += valor;
+                    break;
+                case 5:
+                    transporte += valor;
+                    break;
+                case 6:
+                    outros += valor;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+        dataset.addValue(comida, "", "Comida");
+        dataset.addValue(lazer, "", "Lazer");
+        dataset.addValue(educacao, "", "Educação");
+        dataset.addValue(saude, "", "Saúde");
+        dataset.addValue(transporte, "", "Transporte");
+        dataset.addValue(outros, "", "Outros");
+
+        return dataset;
+    }
+
+    public XYDataset scatterDeGastos(){
+        final XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries mesValues = new XYSeries("Mês");
+        float jan = 0, fev = 0, mar = 0, abr = 0, mai = 0, jun = 0, jul = 0, agos = 0, set = 0, out = 0, nov = 0, dez = 0;
+
+        for (Gasto gasto : gastos_logado) {
+            int mes = Integer.parseInt(gasto.getData().substring(3,5));
+            float valor = gasto.getValor();
+
+            switch (mes) {
+                case 1:
+                    jan += valor;
+                    break;
+                case 2:
+                    fev += valor;
+                    break;
+                case 3:
+                    mar += valor;
+                    break;
+                case 4:
+                    abr += valor;
+                    break;
+                case 5:
+                    mai += valor;
+                    break;
+                case 6:
+                    jun += valor;
+                    break;
+                case 7:
+                    jul += valor;
+                    break;
+                case 8:
+                    agos += valor;
+                    break;
+                case 9:
+                    set += valor;
+                    break;
+                case 10:
+                    out += valor;
+                    break;
+                case 11:
+                    nov += valor;
+                    break;
+                case 12:
+                    dez += valor;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+        mesValues.add(1, jan);
+        mesValues.add(2, fev);
+        mesValues.add(3, mar);
+        mesValues.add(4, abr);
+        mesValues.add(5, mai);
+        mesValues.add(6, jun);
+        mesValues.add(7, jul);
+        mesValues.add(8, agos);
+        mesValues.add(9, set);
+        mesValues.add(10, out);
+        mesValues.add(11, nov);
+        mesValues.add(12, dez);
+
+        dataset.addSeries(mesValues);
+
+        return dataset;
     }
 
 }
