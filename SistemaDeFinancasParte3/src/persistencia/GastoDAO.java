@@ -21,7 +21,6 @@ public class GastoDAO {
     private PreparedStatement selectFromMes;
     private PreparedStatement update;
     private PreparedStatement delete;
-    private PreparedStatement deleteAll;
 
     private GastoDAO() throws ClassNotFoundException, SQLException, SelectException {
         Connection conexao = Conexao.getConexao();
@@ -29,7 +28,6 @@ public class GastoDAO {
         selectNewId = conexao.prepareStatement("select nextval('id_gasto')");
         insert = conexao.prepareStatement("insert into gasto values (?,?,?,?,?,?,?)");
         delete = conexao.prepareStatement("delete from gasto where id = ?");
-        deleteAll = conexao.prepareStatement("delete from gasto where id_usuario = ?");
         select = conexao.prepareStatement("select * from gasto where id = ?");
         selectAll = conexao.prepareStatement("select * from gasto where id_usuario = ?");
         selectFromCateg = conexao.prepareStatement("select * from gasto where id_categoria = ? and id_usuario = ?");
@@ -59,7 +57,7 @@ public class GastoDAO {
         return 0;
     }
 
-    public void insert(Gasto gasto) throws InsertException, SelectException {
+    public void insert(Gasto gasto) throws InsertException {
         try {
             insert.setInt(1, SelectNewId());
             insert.setString(2, gasto.getNome());
@@ -205,15 +203,5 @@ public class GastoDAO {
             throw new DeleteException("\nErro ao deletar gasto!");
         }
     }
-
-    public void deleteAll(int id_user) throws DeleteException {
-        try {
-            deleteAll.setInt(1, id_user);
-            deleteAll.executeUpdate();
-        } catch (Exception e) {
-            throw new DeleteException("\nErro ao deletar todos os gastos! ");
-        }
-    }
-
 
 }

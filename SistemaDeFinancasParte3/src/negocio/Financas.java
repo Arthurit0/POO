@@ -12,9 +12,9 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import _InterfaceGráfica.TabelaGastos;
 import dados.*;
 import exceptions.*;
+import interfaceGráfica.TabelaGastos;
 import persistencia.*;
 
 public class Financas {
@@ -39,7 +39,7 @@ public class Financas {
 
         if(usuario.getSenha().equals(senha)){
             ID_logado = usuario.getId();
-            loadGastos();
+            LoadGastos();
         }else{
             throw new SenhaIncorretaException("Senha Incorreta! ");
         }
@@ -56,7 +56,7 @@ public class Financas {
     }
 
     public List<Gasto> seeAllGastos() throws SelectException{
-        loadGastos();
+        LoadGastos();
         return gastos_logado;
     }
 
@@ -93,15 +93,15 @@ public class Financas {
         gastoDAO.update(gasto);
     }
 
-    private void loadGastos() throws SelectException{
+    private void LoadGastos() throws SelectException{
         gastos_logado = gastoDAO.selectAll(ID_logado);
     }
 
-    public void addUser(User user) throws InsertException, SelectException{
+    public void addUser(User user) throws InsertException{
         userDAO.insert(user);
     }
 
-    public void removeUser(User user) throws DeleteException, SelectException{
+    public void removeUser(User user) throws DeleteException{
         userDAO.delete(user);
     }
 
@@ -141,26 +141,6 @@ public class Financas {
         tabela.getColumnModel().getColumn(4).setResizable(false);
 
         return tabela;
-    }
-
-    public String numDaCateg(int cat){
-        switch (cat) {
-            case 1:
-                return "Comida";
-            case 2:
-                return "Lazer";
-            case 3:
-                return "Educação";
-            case 4:
-                return "Saúde";
-            case 5:
-                return "Transporte";
-            case 6:
-                return "Outros";
-        
-            default:
-                return null;
-        }
     }
 
     public CategoryDataset barraDeGastos(){
