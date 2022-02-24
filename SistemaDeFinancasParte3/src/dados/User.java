@@ -39,6 +39,4 @@ public class User {
         return this.senha;
     }
 
-
-
 }
