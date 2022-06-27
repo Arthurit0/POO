@@ -1,2 +1,2 @@
 # POO
-Tarefas, listas e trabalhos de POO serão colocados aqui.
+Tarefas, listas e trabalhos de POO serão armazenados aqui.
